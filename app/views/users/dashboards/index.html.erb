@@ -16,6 +16,7 @@
     <tr>
       <th scope="col">Community Name</th>
       <th scope="col">Created On</th>
+      <th scope="col">Open</th>
     </tr>
   </thead>
   
@@ -25,6 +26,7 @@
     <tr>
       <td><%= com.name %></td>
       <td><%= com.created_at %></td>
+      <td><%= link_to 'Show', users_community_path(com) %></td>
     </tr>
 
   <% end %>

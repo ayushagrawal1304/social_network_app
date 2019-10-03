@@ -10,8 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require toastr
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require toastr
+//= require flash
 //= require_tree .

@@ -1,5 +1,10 @@
 	<h1>Welcome <%= current_user.first_name %> </h1>&nbsp;&nbsp;&nbsp;
 
+	<%= form_tag edit_user_registration_path(current_user), :method => "get" do %>
+	  <button type="sumbit" class="btn btn-primary ">Profile</button>
+	<% end %>
+	&nbsp;&nbsp;
+	
 	<%= form_tag destroy_user_session_path, :method => "delete" do %>
 	  <button type="sumbit" class="btn btn-primary ">Sign out</button>
 	<% end %>

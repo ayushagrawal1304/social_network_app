@@ -7,5 +7,26 @@
  	<%= link_to 'Profile', edit_user_registration_path(current_user), class: 'btn btn-primary' %>&nbsp;&nbsp;
 
  	<%= link_to 'Sign Out', destroy_user_session_path, method: "delete", class: 'btn btn-primary' %>&nbsp;&nbsp;
-
 </nav>
+
+<br><h3> Commmunities </h3></br>
+
+<table class="table">
+	<thead class="thead-dark">
+    <tr>
+      <th scope="col">Community Name</th>
+      <th scope="col">Created On</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  <% @community.each do |com| %>
+    
+    <tr>
+      <td><%= com.name %></td>
+      <td><%= com.created_at %></td>
+    </tr>
+
+  <% end %>
+  </tbody>
+</table>

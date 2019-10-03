@@ -11,6 +11,10 @@ class Users::InvitationsController < ApplicationController
     end
   end
 
+  def index
+    @approvals=UserApproval.where(user_id: current_user.id).where(approved: false)
+  end
+
   def approval_params
     params.permit(:user_id, :community_id)
   end

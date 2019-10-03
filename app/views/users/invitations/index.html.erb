@@ -7,6 +7,9 @@
     <tr>
       <th scope="col">Community Name</th>
       <th scope="col">Invites on</th>
+      <th scope="col">Accept Invitations</th>
+      <th scope="col">Decline Invitation</th>
+
     </tr>
   </thead>
   
@@ -16,6 +19,9 @@
       <td><%= Community.community_name(approval.community_id).map{|c| c.name}.to_s %></td>
       <td><%= approval.created_at %></td>
 
+      <td><%= link_to 'Accept', accept_users_invitation_path(approval.id), method: :put, class: 'btn btn-primary' %></td>
+
+      <td><%= link_to 'Decline', users_invitation_path(approval.id), method: :delete, class: 'btn btn-primary' %></td>
     </tr>
   <% end %>
   </tbody>

@@ -38,6 +38,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 
+gem 'pry', '~> 0.12.2'
+gem 'jquery-rails'
 #bootstrap
 gem 'bootstrap', '~> 4.0.0'
 

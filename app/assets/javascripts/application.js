@@ -15,4 +15,7 @@
 //= require turbolinks
 //= require toastr
 //= require flash
-//= require_tree .
+//= require jquery3
+//= require bootstrap
+//= require select2.min
+//= require select2

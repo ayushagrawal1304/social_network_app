@@ -3,12 +3,15 @@ class Users::InvitationsController < ApplicationController
   def create
     @approval = UserApproval.new(approval_params)
     @approval[:approved]= false
-    if @approval.save
-      redirect_back(fallback_location: root_path)
-      #redirect_to users_community_path(params[:community_id]), flash: {success: "Invited successfully"}
-    else 
-      render 'dashboards/index'
+
+    params[:user_id].each do |x|
+      @approval[:user_id]= x
+      binding.pry
+      @approval.save
+      binding.pry
     end
+    flash.notice = "Invited Successfuly"
+    render "create"
   end
 
   def index
@@ -17,6 +20,7 @@ class Users::InvitationsController < ApplicationController
 
   def accept
     if UserApproval.find_by(id: params[:id]).update(approved: true)
+      flash.notice = "Accepted successfuly"
       redirect_to users_invitations_path
     else
       render 'index'

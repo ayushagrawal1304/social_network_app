@@ -1,14 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<%= link_to 'Home', users_dashboards_index_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
+
+	<%= link_to 'Profile', edit_user_registration_path(current_user), class: 'btn btn-primary' %>&nbsp;&nbsp;
+
   <div class="sign_up">
-		<h1 align="center"> <%= @community.name %> </h1>
+		<h1 align="center"> <%= @community.name.capitalize %> </h1>
 	</div>
+
+ 	<%= link_to 'Sign Out', destroy_user_session_path, method: "delete", class: 'btn btn-primary' %>&nbsp;&nbsp;
 </nav>
 
 <div class="container">
   <div class="sign_up">
 		<%= form_with model: @approval, url: users_invitations_path(community_id: @community.id) do |f| %>
 			<div class="form-group">
-			   <br> <%= select_tag(:user_id, options_for_select(invite_user_options(@community.id)), { class: 'form-control'}) %></br>
+			   <br> <%= select_tag(:user_id, options_for_select(invite_user_options), { class: 'form-control'}) %></br>
 			</div>
 
 			<div class="actions">

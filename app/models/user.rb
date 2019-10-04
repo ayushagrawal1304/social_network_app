@@ -18,8 +18,7 @@ class User < ApplicationRecord
      message: "Invalid "
 
   scope :except_current_user, -> (user_id){ where.not(id: user_id) }
-
-  scope :invite_users, -> (com_id){where.not(id:(UserApproval.select(:user_id).where(community_id: com_id)) )}
+  scope :invite_users, -> (com_id) { where.not(id: (UserApproval.select(:user_id).where(community_id: com_id))) }
 
   #validates :password_confirmation, :presence =>true
   #validates_confirmation_of :password

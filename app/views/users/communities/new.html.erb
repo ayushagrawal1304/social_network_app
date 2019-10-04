@@ -1,10 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+  <%= link_to 'Home', users_dashboards_index_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
+ 
+  <%= link_to 'Profile', edit_user_registration_path(current_user), class: 'btn btn-primary' %>&nbsp;&nbsp;
+  
+  <div class="sign_up">
+    <h1 align="center">Create Communities</h1> &nbsp;&nbsp;
+  </div>
+
+  <%= link_to 'Sign Out', destroy_user_session_path, method: "delete", class: 'btn btn-primary' %>&nbsp;&nbsp;
+
+</nav>
+
 <div class="container">
   <div class="sign_up">
-       
-    <h2>Create Community </h2>
-
     <%= form_with scope: :community,url: users_communities_path, local: true do |f| %>
-
       <div class="form-group">
         <br><%= f.label :community_name %></br>
         <%= f.text_field :name , class: 'form-control', placeholder: 'Enter community name' %>
@@ -14,7 +24,6 @@
         <%= f.submit "Create", class: "btn btn-primary"%>
       </div>
     <% end %>
-
   </div>
 </div>
 

@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :users do
-    resources :dashboards   
+    resources :dashboards do
+      member do
+        get "my_communities"
+        get "joined_communities"
+      end
+    end
 
     resources :communities do
       member do

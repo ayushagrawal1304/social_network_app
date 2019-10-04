@@ -1,5 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<h1>Communities Invitations</h1>
+<h1>Communities Invitations</h1> &nbsp;&nbsp;
+
+  <%= link_to 'Home', users_dashboards_index_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
+ 
+  <%= link_to 'Profile', edit_user_registration_path(current_user), class: 'btn btn-primary' %>&nbsp;&nbsp;
+
+  <%= link_to 'Sign Out', destroy_user_session_path, method: "delete", class: 'btn btn-primary' %>&nbsp;&nbsp;
+
 </nav>
 
 <table class="table">
@@ -16,12 +23,12 @@
   <tbody>
   <% @approvals.each do |approval| %>
     <tr>
-      <td><%= Community.community_name(approval.community_id).map{|c| c.name}.to_s %></td>
+      <td><%= Community.community_name(approval.community_id).map{|c| c.name}[0].to_s %></td>
       <td><%= approval.created_at %></td>
 
-      <td><%= link_to 'Accept', accept_users_invitation_path(approval.id), method: :put, class: 'btn btn-primary' %></td>
+      <td><%= link_to 'Accept', accept_users_invitation_path(approval.id), method: :put, class: 'btn btn-success' %></td>
 
-      <td><%= link_to 'Decline', users_invitation_path(approval.id), method: :delete, class: 'btn btn-primary' %></td>
+      <td><%= link_to 'Decline', users_invitation_path(approval.id), method: :delete, class: 'btn btn-danger' %></td>
     </tr>
   <% end %>
   </tbody>

@@ -2,7 +2,13 @@
 
 	<h1>Welcome <%= current_user.first_name %> </h1>&nbsp;&nbsp;&nbsp;
 	
-	<%= link_to 'Create Community', new_users_community_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Communities</button>&nbsp;&nbsp;
+    <div class="dropdown-menu">
+      <%= link_to 'My Communities', my_communities_users_dashboard_path(current_user.id), class: 'dropdown-item' %>
+      <%= link_to 'Joined Communities', joined_communities_users_dashboard_path(current_user.id), class: 'dropdown-item' %>
+    </div>
+  </div>
 
 	<%= link_to 'Invitations', users_invitations_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
 
@@ -18,19 +24,22 @@
     <tr>
       <th scope="col">Community Name</th>
       <th scope="col">Created On</th>
+      <th scope="col">Invite Users</th>
       <th scope="col">Open</th>
     </tr>
   </thead>
   
   <tbody>
   <% @community.each do |com| %>
-    
     <tr>
       <td><%= com.name %></td>
       <td><%= com.created_at %></td>
+      <td><%= link_to 'Invite', invite_user_users_community_path(com), :remote => true, class: 'btn btn-primary'%></td>
       <td><%= link_to 'Show', users_community_path(com) %></td>
     </tr>
-
   <% end %>
   </tbody>
 </table>
+
+<div id="popup-container">
+</div>

@@ -1,0 +1,5 @@
+// $('#popup-container').html("<%= j(render(partial: 'users/invite')) %>");
+// $('#exampleModal').modal('show');
+
+$("#popup-container").html("<%= j render partial: 'users/invite', locals: {community_id: @community.id} %>");
+$("#exampleModal").modal('show');

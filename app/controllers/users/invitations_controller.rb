@@ -12,7 +12,7 @@ class Users::InvitationsController < ApplicationController
   end
 
   def index
-    @approvals=UserApproval.where(user_id: current_user.id).where(approved: false)
+    @approvals=UserApproval.where(user_id: current_user.id).where(approved: false).paginate(:page => params[:page], :per_page => 5)
   end
 
   def accept

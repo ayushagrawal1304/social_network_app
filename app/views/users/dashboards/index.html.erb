@@ -10,6 +10,8 @@
     </div>
   </div>
 
+  <%= link_to 'Create Community', new_users_community_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
+
 	<%= link_to 'Invitations', users_invitations_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
 
  	<%= link_to 'Profile', edit_user_registration_path(current_user), class: 'btn btn-primary' %>&nbsp;&nbsp;
@@ -41,5 +43,8 @@
   </tbody>
 </table>
 
+
 <div id="popup-container">
 </div>
+
+<%= will_paginate @community, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: "Previous", next_label: "Next" %>

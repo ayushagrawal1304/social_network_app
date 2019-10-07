@@ -42,6 +42,7 @@ gem 'pry', '~> 0.12.2'
 gem 'jquery-rails'
 #bootstrap
 gem 'bootstrap', '~> 4.0.0'
+gem 'will_paginate-bootstrap4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

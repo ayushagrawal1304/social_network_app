@@ -8,6 +8,7 @@ class Users::DashboardsController < ApplicationController
   end
 
   def joined_communities
+    @communities=Community.joined_communities(current_user.id)
   end
 
 end

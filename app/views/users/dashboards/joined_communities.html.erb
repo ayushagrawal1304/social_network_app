@@ -43,3 +43,5 @@
     </tbody>
   </table>
 <%end%>
+
+<%= will_paginate @communities, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: "Previous", next_label: "Next" %>

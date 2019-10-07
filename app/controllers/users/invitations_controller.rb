@@ -24,6 +24,13 @@ class Users::InvitationsController < ApplicationController
     end
   end
 
+  def decline
+    @approval = UserApproval.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def destroy
     @approval = UserApproval.find(params[:id])
     @approval.destroy

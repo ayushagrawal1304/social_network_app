@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :invitations do
       member do
         put "accept"
+        get "decline"
       end
     end
   end

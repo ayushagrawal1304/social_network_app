@@ -1,17 +1,14 @@
 class Users::InvitationsController < ApplicationController
 
   def create
-    @approval = UserApproval.new(approval_params)
-    @approval[:approved]= false
 
-    params[:user_id].each do |x|
-      @approval[:user_id]= x
-      binding.pry
+    params[:user_ids].each do |user_id|
+      @approval = UserApproval.new(approval_params)
+      @approval.user_id= user_id
       @approval.save
-      binding.pry
     end
     flash.notice = "Invited Successfuly"
-    render "create"
+    redirect_to my_communities_users_dashboard_path(params[:community_id])
   end
 
   def index

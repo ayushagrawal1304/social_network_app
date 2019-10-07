@@ -1,6 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <h1>My Communities</h1> &nbsp;&nbsp;
   
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Communities</button>&nbsp;&nbsp;
+    <div class="dropdown-menu">
+      <%= link_to 'My Communities', my_communities_users_dashboard_path(current_user.id), class: 'dropdown-item' %>
+      <%= link_to 'Joined Communities', joined_communities_users_dashboard_path(current_user.id), class: 'dropdown-item' %>
+    </div>
+  </div>
+
   <%= link_to 'Create Community', new_users_community_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
 
   <%= link_to 'Home', users_dashboards_index_path, class: 'btn btn-primary' %>&nbsp;&nbsp;

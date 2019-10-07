@@ -3,3 +3,6 @@
 
 $("#popup-container").html("<%= j render partial: 'users/invite', locals: {community_id: @community.id} %>");
 $("#exampleModal").modal('show');
+$('.js-example-basic-multiple').select2({
+    placeholder: "Select users",
+    allowClear: true });

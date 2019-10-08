@@ -9,11 +9,9 @@ class Users::Communities::PostsController < ApplicationController
     @post.user_id = current_user.id
     @post.community_id = params[:community_id]
     if @post.save 
-      binding.pry
       flash.notice = "Post added Successfuly"
       redirect_to users_communities_post_path(@post.community_id)
     else
-      binding.pry
       render "show"
     end
   end

@@ -17,9 +17,9 @@ class User < ApplicationRecord
   validates_format_of :mobile_no,length: { minimum: 10 }, :with =>  /\d[0-9]\)*\z/ ,
      message: "Invalid "
 
-  scope :except_current_user, -> (user_id){ where.not(id: user_id) }
+  scope :except_current_user, -> (user_id) { where.not(id: user_id) }
   scope :invite_users, -> (com_id) { where.not(id: (UserApproval.select(:user_id).where(community_id: com_id))) }
-
+  scope :user_name, -> (u_id) { select(:first_name).where(id: u_id )}
   #validates :password_confirmation, :presence =>true
   #validates_confirmation_of :password
 end

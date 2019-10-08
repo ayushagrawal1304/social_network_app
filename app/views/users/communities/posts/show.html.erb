@@ -30,13 +30,14 @@
 	      <th scope="col">Posted By</th>
 	      <th scope="col">Created On</th>
 	      <th scope="col">Decription</th>
+	      <th scope="col">  Post</th>
 	    </tr>
 	  </thead>
 	  
 	  <tbody>
 	  <% @post.each do |post| %>
 	    <tr>
-	      <td><%= post.user_id %></td>
+	      <td><%= User.user_name(post.user_id).map(&:first_name)[0] %></td>
 	      <td><%= post.created_at %></td>
 	      <td><%= post.description %></td>
 	      <% post.attachments.each do |image| %>

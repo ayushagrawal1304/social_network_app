@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<h1 align="center"> <%= @community.name.capitalize %> </h1>&nbsp;&nbsp;
+
+	<%= link_to 'Add Post', users_communities_posts_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
+
+	<%= link_to 'Home', users_dashboards_index_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
+
+	<%= link_to 'Profile', edit_user_registration_path(current_user), class: 'btn btn-primary' %>&nbsp;&nbsp;
+
+ 	<%= link_to 'Sign Out', destroy_user_session_path, method: "delete", class: 'btn btn-primary' %>&nbsp;&nbsp;
+</nav>
+
+<br></br>
+	<%= form_with model: @post, url: users_communities_posts_path(community_id: @community.id) do |f| %>
+
+		<%= f.label :description, "Post Caption" %>
+		<%= f.text_field :description %>
+
+	  <%= f.label :attachments, "|" %>
+	  <%= f.file_field :attachments, multiple: true %>
+	    
+	  <%= f.submit "Add Post",class: "btn btn-primary" %>
+	<%end%>
+
+<br><h3> Posts </h3></br>
+<% if !@post.empty? %>
+	<table class="table">
+		<thead class="thead-dark">
+	    <tr>
+	      <th scope="col">Posted By</th>
+	      <th scope="col">Created On</th>
+	      <th scope="col">Decription</th>
+	    </tr>
+	  </thead>
+	  
+	  <tbody>
+	  <% @post.each do |post| %>
+	    <tr>
+	      <td><%= post.user_id %></td>
+	      <td><%= post.created_at %></td>
+	      <td><%= post.description %></td>
+	      <% post.attachments.each do |image| %>
+		      <td><%= image_tag image %></td>
+	      <%end%>
+	    </tr>
+	  <% end %>
+	  </tbody>
+	</table>
+<%end%>
+

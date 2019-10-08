@@ -1,7 +1,7 @@
 class Users::InvitationsController < ApplicationController
 
   def create
-
+    binding.pry
     params[:user_ids].each do |user_id|
       @approval = UserApproval.new(approval_params)
       @approval.user_id= user_id

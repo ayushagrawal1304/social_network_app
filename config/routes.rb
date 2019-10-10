@@ -5,12 +5,6 @@ Rails.application.routes.draw do
   end
   root 'welcome#index'
   
-  namespace :users do
-    namespace :communities do 
-      resources :posts
-    end
-  end
-
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :users do
@@ -22,6 +16,10 @@ Rails.application.routes.draw do
     end
 
     resources :communities do
+      resources :posts do 
+        resources :comments
+      end
+      
       member do
         get "invite_user"
       end

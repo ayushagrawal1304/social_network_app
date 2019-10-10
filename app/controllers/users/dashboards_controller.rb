@@ -1,14 +1,17 @@
 class Users::DashboardsController < ApplicationController
   def index
-    @community=Community.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 6)
+    @community=Community.own_community(current_user.id)
+                        .paginate(page: params[:page], per_page: PER_PAGE)
   end
 
   def my_communities
-    @community=Community.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 6)
+    @community=Community.own_community(current_user.id)
+                        .paginate(page: params[:page], per_page: PER_PAGE)
   end
 
   def joined_communities
-    @communities=Community.joined_communities(current_user.id).paginate(:page => params[:page], :per_page => 6)
+    @communities = current_user.communities.approved
+                               .paginate(page: params[:page], per_page: PER_PAGE)
   end
 
 end

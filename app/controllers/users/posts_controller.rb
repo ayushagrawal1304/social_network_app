@@ -1,5 +1,5 @@
 class Users::PostsController < ApplicationController
-  #before_action :load_community, only: :create
+  before_action :load_community, only: [:create, :index]
 
   def index
     @community = Community.find(params[:community_id])
@@ -29,11 +29,11 @@ class Users::PostsController < ApplicationController
   end
 
   def load_community
-    binding.pry
-    @community = current_user.communities.find_by(id: params[:community_id])
-    if @community.blank?
-      flash.error = "unknown community"
-      redirect_to 
-      end   
+    @community = Community.includes(:user_approvals)
+    .where(user_approvals: { approved:  true, user_id: current_user.id})+Community.where(user_id: current_user.id)
+    if !@community.map(&:id).include? params[:community_id].to_i
+      flash[:error] = "unknown community"
+      redirect_to users_dashboards_index_path
+    end   
   end
 end

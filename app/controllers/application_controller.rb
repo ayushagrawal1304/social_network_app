@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  PER_PAGE = 10
+
   def after_sign_in_path_for(resource)
   users_dashboards_index_path #your path
   end

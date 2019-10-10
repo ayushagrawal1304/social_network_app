@@ -1,10 +1,8 @@
 class Users::InvitationsController < ApplicationController
-
   def create
-    binding.pry
     params[:user_ids].each do |user_id|
       @approval = UserApproval.new(approval_params)
-      @approval.user_id= user_id
+      @approval.user_id = user_id
       @approval.save
     end
     flash.notice = "Invited Successfuly"
@@ -12,10 +10,12 @@ class Users::InvitationsController < ApplicationController
   end
 
   def index
-    @approvals=UserApproval.where(user_id: current_user.id).where(approved: false).paginate(:page => params[:page], :per_page => 5)
+    @communities=current_user.communities.not_approved
+                          .paginate(:page => params[:page], :per_page => PER_PAGE)
   end
 
   def accept
+    binding.pry
     if UserApproval.find_by(id: params[:id]).update(approved: true)
       flash.notice = "Accepted successfuly"
       redirect_to users_invitations_path

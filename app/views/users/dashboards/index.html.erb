@@ -37,7 +37,7 @@
       <td><%= com.name %></td>
       <td><%= com.created_at %></td>
       <td><%= link_to 'Invite', invite_user_users_community_path(com), :remote => true, class: 'btn btn-primary'%></td>
-      <td><%= link_to 'Show', users_communities_post_path(com) %></td>
+      <td><%= link_to 'Show', users_community_posts_path({community_id: com}) %></td>
     </tr>
   <% end %>
   </tbody>

@@ -21,14 +21,12 @@
   </thead>
   
   <tbody>
-  <% @approvals.each do |approval| %>
+  <% @communities.each do |community| %>
     <tr>
-      <td><%= Community.community_name(approval.community_id).map{|c| c.name}[0].to_s %></td>
-      <td><%= approval.created_at %></td>
-
-      <td><%= link_to 'Accept', accept_users_invitation_path(approval.id), method: :put, class: 'btn btn-success' %></td>
-
-      <td><%= link_to 'Decline', decline_users_invitation_path(approval.id), :remote => true, method: :get, javascript: "void(0)", class: 'btn btn-danger' %></td>
+      <td><%= community.name %></td>
+      <td><%= community.created_at %></td>
+      <td><%= link_to 'Accept', accept_users_invitation_path(community.user_approvals.find_by(user_id: current_user).id), method: :put, class: 'btn btn-success' %></td>
+      <td><%= link_to 'Decline', decline_users_invitation_path(community.user_approvals.find_by(user_id: current_user).id), :remote => true, method: :get, javascript: "void(0)", class: 'btn btn-danger' %></td>
     </tr>
   <% end %>
   </tbody>
@@ -38,5 +36,5 @@
 <div id="delete-container">
 </div>
 
-<%= will_paginate @approvals, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: "Previous", next_label: "Next" %>
+<%= will_paginate @communities, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: "Previous", next_label: "Next" %>
 

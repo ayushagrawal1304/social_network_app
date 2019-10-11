@@ -15,7 +15,6 @@ class Users::InvitationsController < ApplicationController
   end
 
   def accept
-    binding.pry
     if UserApproval.find_by(id: params[:id]).update(approved: true)
       flash.notice = "Accepted successfuly"
       redirect_to users_invitations_path

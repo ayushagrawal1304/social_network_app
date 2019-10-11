@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :user_approvals
   has_many :communities, through: :user_approvals
   has_many :posts
+  has_many :comments
+  has_many :likes
   has_one_attached :image
 
     # Include default devise modules. Others available are:

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :communities do
       resources :posts do 
         resources :comments
+        resources :likes
       end
       
       member do

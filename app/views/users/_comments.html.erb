@@ -9,7 +9,7 @@
       </div>
      
       <div class="modal-body">
-        <%= form_with(model: @comment, url: users_community_post_comments_path(community_id,post_id, commentable_id: commentable_id), local: true) do |f| %>
+        <%= form_with(model: @comment, url: users_community_post_comments_path(community_id,post_id, commentable_id: commentable_id), remote: true) do |f| %>
 
           <div class="form-group">
              <br> <%= f.label :add_comment %></br>

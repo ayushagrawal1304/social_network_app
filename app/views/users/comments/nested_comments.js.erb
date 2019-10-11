@@ -1,0 +1,2 @@
+$("#comments-container").html("<%= j render partial: 'users/comments', locals: {community_id: params[:community_id], post_id: params[:post_id], commentable_id: params[:id]} %>");
+$("#nestedModal").modal('show');

@@ -12,7 +12,7 @@ class Users::LikesController < ApplicationController
       if @like.save
         redirect_to users_community_post_path(params[:community_id], params[:post_id])
       else
-        render "post/show"
+        render "users/post/show"
       end
     end
 

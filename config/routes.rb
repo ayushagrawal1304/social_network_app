@@ -17,8 +17,12 @@ Rails.application.routes.draw do
 
     resources :communities do
       resources :posts do 
-        resources :comments
         resources :likes
+        resources :comments do
+          member do
+            get "nested_comments"
+          end
+        end
       end
       
       member do

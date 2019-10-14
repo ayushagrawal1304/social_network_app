@@ -46,16 +46,19 @@
 
     <%end%>
 
-      <%if current_user.likes.where(likable_id: @post.id).present?%>
-        <p>like <%= link_to image_tag("after_like.png", :size => "30x30"), users_community_post_likes_path(@post.community_id,@post.id), method: :post, remote:true%></p>
+    <div id = "like-container">
+      <%if Like.user_like(current_user , @post.id).present?%>
+        <p>like <%= link_to image_tag("after_like.png", :size => "30x30"), users_community_post_likes_path(@post.community_id,@post.id), method: :post, remote:true%>
       <%else%>
-        <p>like <%= link_to image_tag("before_like.png", :size => "30x30"), users_community_post_likes_path(@post.community_id,@post.id), method: :post, remote:true%></p>
+        <p>like <%= link_to image_tag("before_like.png", :size => "30x30"), users_community_post_likes_path(@post.community_id,@post.id), method: :post, remote:true%>
       <%end%>
+      &nbsp;&nbsp;&nbsp;<%= @post.likes.size %> likes </p>
+    </div>
 
-    <div id="comments-container">
-      <%= @comments.size %> comments  
-                    <%= @post.likes.size %> likes <br></br>
+    <div id ="comments-container">
+      <%= @comments.size %> comments   <br></br>
       <% if @comments.present? %>
+      <%binding.pry%>
         <% @comments.each do |comments| %>
           <%= render partial: 'users/comments/nested', :locals => { comments: comments } %>
 

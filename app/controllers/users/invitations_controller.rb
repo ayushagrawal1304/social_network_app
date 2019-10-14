@@ -3,10 +3,11 @@ class Users::InvitationsController < ApplicationController
     params[:user_ids].each do |user_id|
       @approval = UserApproval.new(approval_params)
       @approval.user_id = user_id
-      if @approval.save
-        UsermailMailer.invite_user_email(User.find(user_id)).deliver_later
-      end
+      @approval.save
     end
+
+    InvitationMailJob.perform_later(params[:user_ids])
+
     flash.notice = "Invited Successfuly"
     redirect_to my_communities_users_dashboard_path(params[:community_id])
   end

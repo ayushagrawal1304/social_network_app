@@ -23,5 +23,4 @@ class User < ApplicationRecord
   scope :except_current_user, -> (user_id) { where.not(id: user_id) }
   scope :invite_users, -> (com_id) { where.not(id: (UserApproval.select(:user_id).where(community_id: com_id))) }
   scope :user_name, -> (u_id) { select(:first_name).where(id: u_id )}
-  
 end

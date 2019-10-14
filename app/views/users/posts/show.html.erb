@@ -46,28 +46,30 @@
 
     <%end%>
 
-    <%if current_user.likes.where(likable_id: @post.id).present?%>
-      <p>like <%= link_to image_tag("after_like.png", :size => "30x30"), users_community_post_likes_path(@post.community_id,@post.id), method: :post, remote:true%></p>
-    <%else%>
-      <p>like <%= link_to image_tag("before_like.png", :size => "30x30"), users_community_post_likes_path(@post.community_id,@post.id), method: :post, remote:true%></p>
-    <%end%>
+      <%if current_user.likes.where(likable_id: @post.id).present?%>
+        <p>like <%= link_to image_tag("after_like.png", :size => "30x30"), users_community_post_likes_path(@post.community_id,@post.id), method: :post, remote:true%></p>
+      <%else%>
+        <p>like <%= link_to image_tag("before_like.png", :size => "30x30"), users_community_post_likes_path(@post.community_id,@post.id), method: :post, remote:true%></p>
+      <%end%>
 
     <div id="comments-container">
       <%= @comments.size %> comments  
                     <%= @post.likes.size %> likes <br></br>
-      <% if !@comments.empty? %>
+      <% if @comments.present? %>
         <% @comments.each do |comments| %>
           <%= render partial: 'users/comments/nested', :locals => { comments: comments } %>
 
           <% @nested_comment = Comment.where(commentable_id: comments.id).order('created_at DESC')%>
-          <%if @nested_comment.present?%>
-            <%@nested_comment.each do |comments|%>
-             &nbsp;&nbsp;&nbsp;&nbsp;<%= render partial: 'users/comments/nested', :locals => { comments: comments } %>
-            <%end%>
-          <%end%>
+            <div class= "padding_left">
+              <% @nested_comment.each do |comments|%>
+               <%= render partial: 'users/comments/nested', :locals => { comments: comments } %>
+              <%end%>
+            </div>
         <%end%>
 
       <% end %>
+    </div>
+    <div id="add-comments-container">
     </div>
   </div>
 </div>

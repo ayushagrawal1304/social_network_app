@@ -10,7 +10,6 @@ class Users::CommentsController < ApplicationController
     end
 
     if @comment.save
-      flash.notice = "Comment added successfuly"
       respond_to do |format|
         format.js
       end

@@ -66,12 +66,19 @@
       <%= @comments.size %> comments   <br></br>
       <% if @comments.present? %>
         <% @comments.each do |comments| %>
-          <%= render partial: 'users/comments/nested', locals: { comments: comments } %>
+          <%= image_tag("icon.jpeg", :size => "20x20") %>
+          <%= User.user_name(comments.user_id).map(&:first_name)[0] %>
+          <br><%= comments.comment %></br>
+          <%= comments.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+          <p><%= link_to "Reply", nested_comments_users_community_post_comment_path(@post.community_id, @post.id, comments.id ), :remote => true, method: :get %></p>
 
           <% @nested_comment = Comment.get_comments(comments.id)%>
             <div class= "padding_left">
               <% @nested_comment.each do |comments|%>
-               <%= render partial: 'users/comments/nested', locals: { comments: comments } %>
+              <p><%= image_tag("icon.jpeg", :size => "20x20") %>
+              <%= User.user_name(comments.user_id).map(&:first_name)[0] %>
+              <br><%= comments.comment %></br>
+              <%= comments.created_at.to_time.strftime('%B %e at %l:%M %p') %>
               <%end%>
             </div>
         <%end%>

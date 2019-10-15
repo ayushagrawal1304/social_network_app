@@ -13,4 +13,10 @@ class Users::LikesController < ApplicationController
       format.js
     end
   end
+
+  def like_by
+    respond_to do |format|
+      format.js
+    end
+  end
 end

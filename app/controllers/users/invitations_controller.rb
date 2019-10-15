@@ -14,7 +14,7 @@ class Users::InvitationsController < ApplicationController
 
   def index
     @communities=current_user.communities.not_approved
-                          .paginate(:page => params[:page], :per_page => PER_PAGE)
+                          .paginate(page: params[:page], per_page: PER_PAGE)
   end
 
   def accept

@@ -2,5 +2,5 @@
 <%= User.user_name(comments.user_id).map(&:first_name)[0] %>
 <br><%= comments.comment %></br>
 <%= comments.created_at.to_time.strftime('%B %e at %l:%M %p') %>
-<p><%= link_to "comment", nested_comments_users_community_post_comment_path(@post.community_id, @post.id, comments.id ), :remote => true, method: :get %></p>
+<p><%= link_to "reply", nested_comments_users_community_post_comment_path(@post.community_id, @post.id, comments.id ), :remote => true, method: :get %></p>
 

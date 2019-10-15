@@ -1,10 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class = "button_padding_left">
+	  <%= link_to 'Home', users_dashboards_index_path, class: 'btn btn-primary' %>
+  </div>
 
-	<%= link_to 'Home', users_dashboards_index_path, class: 'btn btn-primary' %>&nbsp;&nbsp;
+  <div class = "button_padding_left">
+	  <%= link_to 'Profile', edit_user_registration_path(current_user), class: 'btn btn-primary' %>
+  </div>
 
-	<%= link_to 'Profile', edit_user_registration_path(current_user), class: 'btn btn-primary' %>&nbsp;&nbsp;
-
- 	<%= link_to 'Sign Out', destroy_user_session_path, method: "delete", class: 'btn btn-primary' %>&nbsp;&nbsp;
+  <div class = "button_padding_left">
+ 	  <%= link_to 'Sign Out', destroy_user_session_path, method: "delete", class: 'btn btn-primary' %>
+  </div>
 </nav>
 
 
@@ -41,7 +46,7 @@
     <%= form_with(model: @comment, url: users_community_post_comments_path(@post.community_id,@post.id), remote:true) do |f| %>
 
       <%= f.label :add_comment %>
-      <p><%= f.text_area :comment, class:"form-control", placeholder: "write comments here... "  %></p>
+      <p><%= f.text_area :comment, required: true, class:"form-control", placeholder: "write comments here... "  %></p>
       <p><%= f.submit "Add comment",class: "btn btn-success" %></p>
 
     <%end%>
@@ -58,7 +63,6 @@
     <div id ="comments-container">
       <%= @comments.size %> comments   <br></br>
       <% if @comments.present? %>
-      <%binding.pry%>
         <% @comments.each do |comments| %>
           <%= render partial: 'users/comments/nested', :locals => { comments: comments } %>
 

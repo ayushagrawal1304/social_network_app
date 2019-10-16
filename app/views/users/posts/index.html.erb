@@ -19,30 +19,7 @@
 
 </nav>
 
-<p><h3> Posts </h3></p>
-<% if !@post.empty? %>
-	<table class="table">
-		<thead class="thead-dark">
-	    <tr>
-	      <th scope="col">Posted By</th>
-	      <th scope="col">Created On</th>
-	      <th scope="col">Title</th>
-	      <th scope="col">  Open</th>
-	    </tr>
-	  </thead>
-	  
-	  <tbody>
-	  <% @post.each do |post| %>
-	    <tr>
-	      <td><%= User.user_name(post.user_id).map(&:first_name)[0] %></td>
-	      <td><%= post.created_at %></td>
-	      <td><%= post.title %></td>
-	      <td><%= link_to 'Show', users_community_post_path(@community.id,post.id) %></td>
-	    </tr>
-	  <% end %>
-	  </tbody>
-	</table>
-<%end%>
+<%= render partial: 'users/posts/post_list', locals: { posts: @post, community_id: @community.id} %>
 
 <%= will_paginate @post, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: "Previous", next_label: "Next" %>
 

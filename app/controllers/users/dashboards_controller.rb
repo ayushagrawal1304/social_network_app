@@ -13,5 +13,4 @@ class Users::DashboardsController < ApplicationController
     @communities = current_user.communities.approved
                                .paginate(page: params[:page], per_page: PER_PAGE)
   end
-
 end

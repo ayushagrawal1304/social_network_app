@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   end
   root 'welcome#index'
   
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions'}
+  devise_for :users, controllers: { registrations: 'users/registrations',
+   sessions: 'users/sessions', confirmations: 'users/confirmations', passwords: 'users/passwords'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :users do
     resources :dashboards do

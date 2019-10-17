@@ -1,1 +1,1 @@
-worker: bundle exec sidekiq -q default -q mailers
+web: bundle exec sidekiq -q default -q mailers

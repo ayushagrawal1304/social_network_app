@@ -1,1 +1,1 @@
-web: bundle exec sidekiq start -p $PORT
+web: bundle exec redis-server,sidekiq

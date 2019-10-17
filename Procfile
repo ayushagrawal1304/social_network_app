@@ -1,1 +1,2 @@
-web: bundle exec redis-server,sidekiq
+web: bundle exec redis-server
+web: bundle exec sidekiq 

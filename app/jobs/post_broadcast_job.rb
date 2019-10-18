@@ -8,8 +8,9 @@ class PostBroadcastJob < ApplicationJob
   private   
     
     def render(post)  
-      ApplicationController.renderer
-                .render(partial: 'users/posts/post_list', 
-                  locals: {posts: Post.where(community_id: post.community_id), community_id: post.community_id })  
+      @community = Community.find(post[:community_id])
+      @post = @community.posts.order('created_at DESC')
+              .paginate(:page => post[:page], :per_page => 10)
+      #ApplicationController.renderer.render "users/posts/index", locals: {:@community => @community, :@post => @post}
     end  
 end

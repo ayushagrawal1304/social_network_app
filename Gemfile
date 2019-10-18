@@ -41,7 +41,7 @@ gem 'devise'
 gem 'pry', '~> 0.12.2'
 gem 'jquery-rails'
 #bootstrap
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'will_paginate-bootstrap4'
 
 gem 'sidekiq'

@@ -19,7 +19,7 @@
     <%= form_with scope: :community,url: users_communities_path, local: true do |f| %>
       <div class="form-group">
         <br><%= f.label :community_name %></br>
-        <%= f.text_field :name, required: true, class: 'form-control', placeholder: 'Enter community name' %>
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Enter community name' %>
       </div>
       
       <div class="actions">

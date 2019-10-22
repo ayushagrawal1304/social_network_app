@@ -11,6 +11,6 @@ class PostBroadcastJob < ApplicationJob
       @community = Community.find(post[:community_id])
       @post = @community.posts.order('created_at DESC')
               .paginate(:page => post[:page], :per_page => 10)
-      #ApplicationController.renderer.render "users/posts/index", locals: {:@community => @community, :@post => @post}
+      #ApplicationController.renderer.render "users/posts/index"
     end  
 end

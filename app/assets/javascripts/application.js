@@ -19,3 +19,4 @@
 //= require bootstrap
 //= require select2.min
 //= require select2
+//= require cable

@@ -16,12 +16,12 @@
 
 <div class="container">
   <div class="sign_up">
-	<%= form_with model: @post, url: users_community_posts_path do |f| %>
+	<%= form_with model: @post, local: true, url: users_community_posts_path do |f| %>
 
 		<%= f.label :title %>
-		<p><%= f.text_field :title, required: true, class: "form-control" %></p>
-		<p><%= f.text_area :content, required: true, class:"form-control", placeholder: "Post content "  %></p>
-	  <p><%= f.file_field :attachments, required: true, multiple: true %></p>
+		<p><%= f.text_field :title, class: "form-control" %></p>
+		<p><%= f.text_area :content, class:"form-control", placeholder: "Post content "  %></p>
+	  <p><%= f.file_field :attachments, multiple: true %></p>
 	  <p><%= f.submit "Add Post",class: "btn btn-success" %></p>
 	<%end%>
 	</div>

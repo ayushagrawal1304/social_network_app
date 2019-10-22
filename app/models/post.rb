@@ -5,7 +5,12 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :community
 
+  validates :content, presence: true
+  validates :title, presence: true
+  validates :attachments, presence: true
+
   after_create_commit { PostBroadcastJob.perform_later self }  
   after_update_commit { PostBroadcastJob.perform_later self }  
   after_destroy { PostBroadcastJob.perform_later self } 
 end
+   

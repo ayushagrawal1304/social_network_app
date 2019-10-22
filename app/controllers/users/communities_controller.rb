@@ -5,10 +5,12 @@ class Users::CommunitiesController < ApplicationController
   def create
     @community = Community.new(community_params)
     @community[:user_id] = current_user.id
+    
     if @community.save
       flash.notice = "Community Created Successfuly"
       redirect_to users_dashboards_path
     else
+      flash[:error] = "Please enter community name"
       render 'new'
     end
   end

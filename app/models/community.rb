@@ -4,7 +4,10 @@ class Community < ApplicationRecord
   has_many :posts
   has_one_attached :image
 
+  validates :name, presence: true
+
   scope :approved, -> { where('user_approvals.approved = ?', true).order('created_at DESC') }
   scope :not_approved, -> { where('user_approvals.approved = ?', false).order('created_at DESC') }
   scope :own_community,-> (user_id){ where('user_id = ?', user_id).order('created_at DESC') }
 end
+  

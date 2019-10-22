@@ -19,7 +19,8 @@ class Users::PostsController < ApplicationController
       flash.notice = "Post has been created successfuly"
       redirect_to users_community_post_path(@post.community_id, @post.id)
     else
-      render "show"
+      flash[:error] = @post.errors.full_messages.join("<br/>").html_safe
+      redirect_to new_users_community_post_path(params[:community_id])
     end
   end
 
